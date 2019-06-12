@@ -1,0 +1,9 @@
+name: inspec-terraform
+title: InSpec Terraform Profile
+maintainer: Afshin Mehrabani
+copyright: Afshin Mehrabani
+summary: This resource pack provides Terraform integration
+copyright_email: afshin.meh@gmail.com
+license: Apache-2.0
+version: 0.1.0
+inspec_version: '>= 2.3.10'

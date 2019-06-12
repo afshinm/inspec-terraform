@@ -1,4 +1,4 @@
-# inspec-infratest
+# inspec-terraform
 Unit testing for your "Infrastructure as code"
 
 ## Requirements

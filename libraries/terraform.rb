@@ -21,25 +21,6 @@ class Terraform < Inspec.resource(1)
     if opts[:module_name]
       @module_name = opts[:module_name]
     end
-  end
-
-  %w{
-    id name type provider_name
-  }.each do |property|
-    define_method property do
-      resource[property] unless resource.nil?
-    end
-  end
-
-  def to_s
-    "terraform resource #{@value}"
-  end
-
-  private
-
-  def resource
-    # for inspec check inspec.backend.terraform will be nil
-    return nil if inspec.backend.class.to_s == 'Train::Transports::Mock::Connection'
 
     content = JSON.load inspec.backend.resources.content
     resources = content["planned_values"][@module_name]["resources"].select {
@@ -51,7 +32,21 @@ class Terraform < Inspec.resource(1)
     else
       @resources = resources
     end
+  end
 
-    @resources
+  %w{
+    id name type provider_name
+  }.each do |property|
+    define_method property do
+      @resources[property] unless @resources.nil?
+    end
+  end
+
+  def exists?
+    not @resources.nil?
+  end
+
+  def to_s
+    "terraform resource #{@resource_name}"
   end
 end

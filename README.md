@@ -1,6 +1,10 @@
 # inspec-infratest
 Unit testing for your "Infrastructure as code"
 
+## Requirements
+
+ - Terraform > 0.12
+ - Inspec > 4.0
 
 ## Example
 
